@@ -7,7 +7,7 @@ from .models import Budget, Category
 class UserSerializer(serializers.ModelSerializer):    
     class Meta:
         model = get_user_model()
-        fields = ['email', 'first_name', 'last_name', ]
+        fields = ['email']
 
 
 class BudgetSerializer(serializers.ModelSerializer):
@@ -19,7 +19,7 @@ class BudgetSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Budget
-        fields = ['user', 'free_amount', 'dob', 'categories']
+        fields = ['user', 'first_name', 'last_name', 'free_amount', 'dob', 'categories']
         
 
 class CategorySerializer(serializers.ModelSerializer):

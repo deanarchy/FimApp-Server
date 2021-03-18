@@ -3,28 +3,24 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 # Create your models here.
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, password=None):
+    def create_user(self, email, password=None):
         if not email:
             raise ValueError('Email address must be filled')
 
         user = self.model(
             email=self.normalize_email(email),
-            first_name=first_name,
-            last_name=last_name,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, last_name, password=None):
+    def create_superuser(self, email, password=None):
         if not email:
             raise ValueError('Email address must be filled')
 
         user = self.create_user(
             email=email,
-            first_name=first_name,
-            last_name=last_name,
             password=password,
         )
         user.is_admin = True
@@ -40,22 +36,13 @@ class User(AbstractBaseUser):
         primary_key=True,
     )
     
-    first_name = models.CharField(
-        verbose_name='first name',
-        max_length=255,
-    )
-
-    last_name = models.CharField(
-        verbose_name='last name',
-        max_length=255,
-    )
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
     objects = UserManager()
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    REQUIRED_FIELDS = []
 
     def has_perm(self, perm, obj=None):
         return True
@@ -76,6 +63,16 @@ class Budget(models.Model):
         User,
         on_delete=models.CASCADE,
         primary_key=True,
+    )
+
+    first_name = models.CharField(
+        verbose_name='first name',
+        max_length=255,
+    )
+
+    last_name = models.CharField(
+        verbose_name='last name',
+        max_length=255,
     )
     
     free_amount = models.FloatField()
