@@ -12,19 +12,19 @@ from .permissions import IsBudgetOwner, IsCategoryOwner, CreateOnlyOrAdmin
 class ListUserView(generics.ListAPIView):
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
     
 
 class DetailUserView(generics.RetrieveAPIView):
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
 
 
 class ListBudgetView(generics.ListCreateAPIView):
     queryset = Budget.objects.all()
     serializer_class = BudgetSerializer
-    permission_classes = [CreateOnlyOrAdmin]
+    permission_classes = [permissions.IsAuthenticated, CreateOnlyOrAdmin]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -32,33 +32,22 @@ class ListBudgetView(generics.ListCreateAPIView):
 
 class DetailBudgetView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Budget.objects.all()
-    permission_classes = [IsBudgetOwner]
+    permission_classes = [permissions.IsAuthenticated, IsBudgetOwner]
     serializer_class = BudgetSerializer
 
 
 class ListCategoriesView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [CreateOnlyOrAdmin]
+    permission_classes = [permissions.IsAuthenticated, CreateOnlyOrAdmin]
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        
-        budget = Budget.objects.get(pk=request.user.budget)
-        budget.free_amount -= int(request.data.get('amount'))
-        budget.save()
-        
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
     
     def perform_create(self, serializer):
         serializer.save(budget=self.request.user.budget)
 
         
 class DetailCategoriesView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsCategoryOwner]
+    permission_classes = [permissions.IsAuthenticated, IsCategoryOwner]
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 

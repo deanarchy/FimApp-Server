@@ -7,11 +7,9 @@ services:
     restart: always
     command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python /code/manage.py runserver 0.0.0.0:8000'
     environment: 
-      - ENVIRONMENT=development
+      - ENVIRONMENT=production
       - SECRET_KEY=h!f7%%&k%pilaqgjr&kspdqvp-i+m-wq%cq!4e*e3bck5tft7@
-      - DEBUG=1
-    volumes: 
-      - .:/code
+      - DEBUG=0
     ports: 
       - 8000:8000
     depends_on:
@@ -19,11 +17,6 @@ services:
 
   db:
     image: postgres:13
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-
-volumes: 
-  postgres_data:
