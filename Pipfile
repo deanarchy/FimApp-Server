@@ -12,6 +12,8 @@ django-filter = "*"
 djangorestframework-simplejwt = "*"
 dj-rest-auth = "*"
 django-allauth = "*"
+gunicorn = "*"
+dj-database-url = "*"
 
 [dev-packages]
 

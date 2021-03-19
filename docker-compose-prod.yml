@@ -5,7 +5,7 @@ services:
     build: .
     image: django-backend:0.1
     restart: always
-    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python /code/manage.py runserver 0.0.0.0:8000'
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; gunicorn config.wsgi -b 0.0.0.0:8000'
     environment: 
       - ENVIRONMENT=production
       - SECRET_KEY=h!f7%%&k%pilaqgjr&kspdqvp-i+m-wq%cq!4e*e3bck5tft7@
