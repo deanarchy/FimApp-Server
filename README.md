@@ -1,5 +1,5 @@
 # FimApp-Server
-This is FimApp server. This repo intended as a backend part of the FimApp project. It contains a several apps and APIs endpoints to exhibit a certain functionality. It was build mainly by using Django REST Framework.
+This is FimApp server, a Financial Manager apps. This repo intended as a backend part of the FimApp project. It contains a several apps and APIs endpoints to exhibit a certain functionality. It was built mainly by using Django REST Framework.
 
 ## Deployed Heroku Demo
 [FimApp-Server](https://fimapp-server.herokuapp.com/)
@@ -12,7 +12,7 @@ This is FimApp server. This repo intended as a backend part of the FimApp projec
 **2. Clone repos**
 
 ```bash
-  git clone https://github.com/deanarchy/FimApp-Server/
+  git clone https://github.com/deanarchy/FimApp-Server.git
 ```
 
 **3. Run Docker Compose with Development config**
