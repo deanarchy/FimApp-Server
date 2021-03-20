@@ -17,7 +17,7 @@ This is FimApp server, a Financial Manager apps. This repo intended as a backend
 
 **3. Run Docker Compose with Development config**
 ```bash
-  docker-compose -f docker-compose.yml -d --build
+  docker-compose up -f docker-compose.yml -d --build
 ```
 
 **4. Migrate the database**
