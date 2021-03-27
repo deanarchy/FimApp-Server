@@ -144,9 +144,12 @@ AUTH_USER_MODEL = 'budgets.User'
 # REST framework config
 
 REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
-    )
+    ),
 }
 
 REST_AUTH_SERIALIZERS = {
