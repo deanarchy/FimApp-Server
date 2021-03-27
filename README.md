@@ -25,6 +25,11 @@ This is FimApp server, a Financial Manager apps. This repo intended as a backend
   docker-compose exec backend python manage.py migrate
 ```
 
+**5. Create superuser**
+```bash
+  docker-compose exec backend python manage.py createsuperuser
+```
+
 ## Documentation
 To be added...
 
