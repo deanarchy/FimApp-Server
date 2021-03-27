@@ -34,8 +34,8 @@ This is FimApp server, a Financial Manager apps. This repo intended as a backend
 To be added...
 
 ## Credits
-This server is mainly built using [Django REST Framework](https://www.django-rest-framework.org/)
+This server mainly built using [Django REST Framework](https://www.django-rest-framework.org/)
 
-[dj-rest-auth](https://github.com/iMerica/dj-rest-auth) was used for authentication systems.
+[dj-rest-auth](https://github.com/iMerica/dj-rest-auth) used for authentication systems.
 
 [django-rest-framework-simplejwt](https://github.com/jazzband/django-rest-framework-simplejwt) used for JSON Web Token authentication.
