@@ -44,6 +44,17 @@ class ListCategoriesView(generics.ListCreateAPIView):
     
     def perform_create(self, serializer):
         serializer.save(budget=self.request.user.budget)
+        
+
+class ListCategoriesViewbyUser(generics.ListAPIView):        
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAuthenticated, IsCategoryOwner]
+
+    def get_queryset(self):
+        queryset = Category.objects.all()
+        queryset = queryset.filter(budget=self.kwargs.get('budget'))
+        return queryset
 
         
 class DetailCategoriesView(generics.RetrieveUpdateDestroyAPIView):
