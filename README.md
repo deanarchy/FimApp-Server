@@ -1,8 +1,8 @@
 # FimApp-Server
 This is FimApp server, a Financial Manager apps. This repo intended as a backend part of the FimApp project. It contains a several apps and APIs endpoints to exhibit a certain functionality. It was built mainly by using Django REST Framework.
 
-## Deployed Heroku Demo
-[FimApp-Server](https://fimapp-server.herokuapp.com/)
+## Full Demo
+[FimApp](https://fimapp.vercel.app/)
 
 ## Local Installation 
 **1. Make sure you already have Docker and Docker Compose properly installed**
